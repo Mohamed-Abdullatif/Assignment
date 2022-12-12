@@ -10,15 +10,15 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import axios from 'axios';
-import Entypo from 'react-native-vector-icons/Entypo';
-import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Card from '../components/Card';
 
 const {height, width} = Dimensions.get('window');
+
+const baseUrlFiles = 'https://develop.yeshtery.com/files/';
+
 const ProductsScreen = ({navigation}) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -32,6 +32,7 @@ const ProductsScreen = ({navigation}) => {
   }, []);
 
   const _renderItem = ({item}) => {
+    let imgUrl = baseUrlFiles + item.image_url;
     return (
       <TouchableOpacity
         onPress={() =>
@@ -55,7 +56,7 @@ const ProductsScreen = ({navigation}) => {
               height: '100%',
             }}>
             <Image
-              source={require('../assets/watch7.jpeg')}
+              source={{uri: `${imgUrl}`}}
               style={{height: '100%', width: '100%'}}
             />
           </View>
@@ -74,21 +75,22 @@ const ProductsScreen = ({navigation}) => {
               }}>
               {item.name}
             </Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <MatIcon
-                name="qrcode-scan"
-                size={29}
-                color="#70d1da"
-                style={{marginRight: 8}}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 12,
+              }}>
+              <Image
+                source={require('../assets/QRCode.png')}
+                style={{height: 23, width: 23, marginRight: 6}}
               />
               <Text style={{marginRight: 18, color: '#70d1da'}}>
                 {item.brand_id}
               </Text>
-              <FontAwesome5
-                name="file-invoice-dollar"
-                size={29}
-                color="#70d1da"
-                style={{marginRight: 8}}
+              <Image
+                source={require('../assets/price.png')}
+                style={{height: 23, width: 23, marginRight: 6}}
               />
               <Text style={{color: '#70d1da'}}>{item.price}</Text>
             </View>
@@ -100,6 +102,10 @@ const ProductsScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={require('../assets/bg.png')}
+        style={{width: '100%'}}
+      />
       <StatusBar
         barStyle="light-content"
         hidden={false}
@@ -108,16 +114,18 @@ const ProductsScreen = ({navigation}) => {
       />
       <View style={styles.headerWrapper}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Entypo
-            name="chevron-thin-left"
-            size={28}
-            color="white"
-            style={{marginRight: 10}}
+          <Image
+            source={require('../assets/arrow.png')}
+            style={{height: 16, width: 9, marginRight: 16}}
           />
+
           <Text style={{color: 'white', fontSize: 22}}>Scan Products</Text>
         </View>
         <View>
-          <SimpleLineIcons name="bag" size={28} color="white" />
+          <Image
+            source={require('../assets/bag.png')}
+            style={{height: 20, width: 16, marginRight: 6}}
+          />
         </View>
       </View>
       <View style={styles.productsWrapper}>

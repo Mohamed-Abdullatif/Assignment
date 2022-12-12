@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   StyleSheet,
@@ -7,11 +8,11 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import React from 'react';
 
 const {width, height} = Dimensions.get('screen');
 
 const SlideItem = ({item}) => {
+  console.log('object', item);
   const translateYImage = new Animated.Value(40);
 
   Animated.timing(translateYImage, {

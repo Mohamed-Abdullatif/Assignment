@@ -16,6 +16,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Slider from '../components/Slider';
 import ChooseSize from '../components/ChooseSize';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {height, width} = Dimensions.get('window');
 const list_sizes = ['S', 'M', 'xL', 'XXL'];
@@ -51,17 +52,20 @@ const ProductDetailsScreen = ({route, navigation}) => {
       />
       <View style={styles.headerWrapper}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Entypo
-            name="chevron-thin-left"
-            size={28}
-            color="white"
-            style={{marginRight: 10}}
-            onPress={() => navigation.goBack()}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              source={require('../assets/arrow.png')}
+              style={{height: 16, width: 9, marginRight: 16}}
+            />
+          </TouchableOpacity>
+
           <Text style={{color: 'white', fontSize: 22}}>Product Details</Text>
         </View>
         <View>
-          <SimpleLineIcons name="bag" size={28} color="white" />
+          <Image
+            source={require('../assets/bag.png')}
+            style={{height: 20, width: 16, marginRight: 6}}
+          />
         </View>
       </View>
       <ScrollView>
@@ -167,11 +171,9 @@ const ProductDetailsScreen = ({route, navigation}) => {
                 paddingHorizontal: 20,
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <MatIcon
-                  name="qrcode-scan"
-                  size={29}
-                  color="#70d1da"
-                  style={{marginRight: 10}}
+                <Image
+                  source={require('../assets/QRCode.png')}
+                  style={{height: 27, width: 27, marginRight: 12}}
                 />
                 <View>
                   <Text
@@ -186,20 +188,18 @@ const ProductDetailsScreen = ({route, navigation}) => {
 
               <View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('QRCScreen')}
-                  style={{
-                    backgroundColor: '#1f54ce',
-                    width: 120,
-                    height: 45,
-                    padding: 12,
-                    borderRadius: 10,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Text
-                    style={{color: 'white', fontSize: 17, fontWeight: '600'}}>
-                    Scan
-                  </Text>
+                  onPress={() => navigation.navigate('QRCScreen')}>
+                  <LinearGradient
+                    colors={[
+                      '#00e8db',
+                      '#00ccf1',
+                      '#00abff',
+                      '#0083ff',
+                      '#5c4cdb',
+                    ]}
+                    style={styles.linearGradient}>
+                    <Text style={styles.buttonText}>Scan</Text>
+                  </LinearGradient>
                 </TouchableOpacity>
               </View>
             </View>
@@ -213,11 +213,9 @@ const ProductDetailsScreen = ({route, navigation}) => {
                 paddingHorizontal: 20,
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <MatIcon
-                  name="qrcode-scan"
-                  size={29}
-                  color="#70d1da"
-                  style={{marginRight: 10}}
+                <Image
+                  source={require('../assets/QRCode.png')}
+                  style={{height: 27, width: 27, marginRight: 12}}
                 />
                 <View>
                   <Text
@@ -232,20 +230,18 @@ const ProductDetailsScreen = ({route, navigation}) => {
 
               <View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('QRCScreen')}
-                  style={{
-                    backgroundColor: '#1f54ce',
-                    width: 120,
-                    height: 45,
-                    padding: 12,
-                    borderRadius: 10,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Text
-                    style={{color: 'white', fontSize: 17, fontWeight: '600'}}>
-                    Scan
-                  </Text>
+                  onPress={() => navigation.navigate('QRCScreen')}>
+                  <LinearGradient
+                    colors={[
+                      '#00e8db',
+                      '#00ccf1',
+                      '#00abff',
+                      '#0083ff',
+                      '#5c4cdb',
+                    ]}
+                    style={styles.linearGradient}>
+                    <Text style={styles.buttonText}>Scan</Text>
+                  </LinearGradient>
                 </TouchableOpacity>
               </View>
             </View>
@@ -278,6 +274,21 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     paddingHorizontal: 20,
     paddingVertical: 20,
+  },
+
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });
 export default ProductDetailsScreen;

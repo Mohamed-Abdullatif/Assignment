@@ -7,8 +7,8 @@ import {
   StatusBar,
   SafeAreaView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
 const {height, width} = Dimensions.get('window');
 const QRCScreen = ({navigation}) => {
   return (
@@ -20,16 +20,14 @@ const QRCScreen = ({navigation}) => {
       />
       <View style={styles.headerWrapper}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Entypo
-            name="chevron-thin-left"
-            size={25}
-            color="black"
-            style={{marginRight: 10, fontWeight: '600'}}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={{fontSize: 22, color: 'black', fontWeight: '600'}}>
-            Scan Code
-          </Text>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              source={require('../assets/arrow.png')}
+              style={{height: 16, width: 9, marginRight: 16}}
+            />
+          </TouchableOpacity>
+
+          <Text style={{color: 'black', fontSize: 22}}>Scan Code</Text>
         </View>
       </View>
 
